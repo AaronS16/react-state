@@ -24,6 +24,14 @@ function App() {
     setCount(prevCount => prevCount - 1)
   }
 
+  const [answer, setAnswer] = React.useState(false)
+
+  console.log(answer)
+
+  const outTonight = () => {
+    setAnswer(prev => !prev)
+  }
+
   return (
     <div className="">
       <button onClick={handleClick}>Add Item</button>
@@ -34,6 +42,12 @@ function App() {
           <h1>{count}</h1>
         </div>
         <button onClick={add} className='counter-plus'>+</button>
+      </div>
+      <div className='state'>
+        <h1 className="state--title">Do I feel like going out tonight?</h1>
+            <div className="state--value">
+                <h1 onClick={outTonight}>{answer ? 'No' : 'Yes'}</h1>
+            </div>
       </div>
     </div>
   );
