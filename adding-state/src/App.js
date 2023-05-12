@@ -1,18 +1,11 @@
 import React from 'react';
 import './index.css';
 
-//Adding Things on button click
+
 
 function App() {
-  const [things, setThings] = React.useState(['Thing 1', "Thing 2"]),
-      handleClick = () => {
-        const newText = `Thing ${things.length + 1}`
-        setThings(prevState => [...prevState, newText])
-      },
-      test = things.map((thing, index) =>
-        <p key={index}>{thing}</p>
-      )
-  // Adding and Subtracting with button click
+
+// Adding and Subtracting with button click
 
   const [count, setCount] = React.useState(0)
   
@@ -24,18 +17,31 @@ function App() {
     setCount(prevCount => prevCount - 1)
   }
 
-  const [answer, setAnswer] = React.useState(false)
+// Going Out Tonight
 
-  console.log(answer)
+  const [answer, setAnswer] = React.useState(false)
 
   const outTonight = () => {
     setAnswer(prev => !prev)
   }
 
+
+// Adding Things with State
+
+  const [thing, setThing] = React.useState(['Thing 1', 'Thing 2'])
+
+  const addingThing = () => {
+    setThing(prev => [...prev, `Thing ${thing.length + 1}`])
+  }
+
+  const showThing = thing.map((el) =>  {
+    return <p>{el}</p>
+  })
+
+// What is being viewed on page
+
   return (
     <div className="">
-      <button onClick={handleClick}>Add Item</button>
-      {test}
       <div className='counter'>
         <button onClick={subtract} className='counter-minus'>-</button>
         <div className='counter-count'>
@@ -45,9 +51,13 @@ function App() {
       </div>
       <div className='state'>
         <h1 className="state--title">Do I feel like going out tonight?</h1>
-            <div className="state--value">
-                <h1 onClick={outTonight}>{answer ? 'No' : 'Yes'}</h1>
+            <div className="state--value" onClick={outTonight}>
+                <h1>{answer ? 'Yes' : 'No'}</h1>
             </div>
+      </div>
+      <div>
+        {showThing}
+        <button onClick={addingThing}>Add Thing</button>
       </div>
     </div>
   );
