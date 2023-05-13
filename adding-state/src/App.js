@@ -53,7 +53,12 @@ const [contact, setContact] = React.useState({
 let starIcon = contact.isFavorite ? filled_star : empty_star
 
 function toggleFavorite() {
-  setContact(prevState => prevState.contact.isFavorite = !prevState.contact.isFavorite)
+  setContact(prevState => {
+    return {
+      ...prevState,
+      isFavorite: !contact.isFavorite
+    }
+  })
 }
 
 // What is being viewed on page
@@ -79,12 +84,13 @@ function toggleFavorite() {
       </div>
       <main>
         <article className="card">
-                  <img src={user_img} className="card--image" />
+                  <img src={user_img} className="card--image" alt='user-pic'/>
                   <div className="card--info">
                       <img 
                           src={starIcon} 
                           className="card--favorite"
                           onClick={toggleFavorite}
+                          alt='favorite-icon'
                       />
                       <h2 className="card--name">
                           {contact.firstName} {contact.lastName}
