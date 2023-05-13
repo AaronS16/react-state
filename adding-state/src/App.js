@@ -28,15 +28,13 @@ function App() {
 
 // Adding Things with State
 
-  const [thing, setThing] = React.useState(['Thing 1', 'Thing 2'])
+const [thing, setThing] = React.useState(['Thing 1', 'Thing 2'])
 
-  const addingThing = () => {
-    setThing(prev => [...prev, `Thing ${thing.length + 1}`])
-  }
+const addingThing = () => {
+  setThing(prev => [...prev, `Thing ${prev.length + 1}`])
+}
 
-  const showThing = thing.map((el) =>  {
-    return <p>{el}</p>
-  })
+const showThing = thing.map(el => <p key={el}>{el}</p>)
 
 // What is being viewed on page
 
@@ -56,8 +54,8 @@ function App() {
             </div>
       </div>
       <div>
-        {showThing}
         <button onClick={addingThing}>Add Thing</button>
+        {showThing}
       </div>
     </div>
   );
