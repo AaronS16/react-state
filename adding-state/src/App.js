@@ -1,5 +1,9 @@
 import React from 'react';
+import empty_star from './images/star-empty.png';
+import filled_star from './images/star-filled.png';
+import user_img from './images/user.png';
 import './index.css';
+
 
 
 
@@ -36,6 +40,22 @@ const addingThing = () => {
 
 const showThing = thing.map(el => <p key={el}>{el}</p>)
 
+// Contact Card Object
+
+const [contact, setContact] = React.useState({
+  firstName: "John",
+  lastName: "Doe",
+  phone: "+1 (719) 555-1212",
+  email: "itsmyrealname@example.com",
+  isFavorite: false
+})
+
+let starIcon = contact.isFavorite ? filled_star : empty_star
+
+function toggleFavorite() {
+  setContact(prevState => prevState.contact.isFavorite = !prevState.contact.isFavorite)
+}
+
 // What is being viewed on page
 
   return (
@@ -57,6 +77,23 @@ const showThing = thing.map(el => <p key={el}>{el}</p>)
         <button onClick={addingThing}>Add Thing</button>
         {showThing}
       </div>
+      <main>
+        <article className="card">
+                  <img src={user_img} className="card--image" />
+                  <div className="card--info">
+                      <img 
+                          src={starIcon} 
+                          className="card--favorite"
+                          onClick={toggleFavorite}
+                      />
+                      <h2 className="card--name">
+                          {contact.firstName} {contact.lastName}
+                      </h2>
+                      <p className="card--contact">{contact.phone}</p>
+                      <p className="card--contact">{contact.email}</p>
+                  </div>
+        </article>
+      </main>
     </div>
   );
 }
